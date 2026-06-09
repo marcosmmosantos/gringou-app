@@ -47,7 +47,6 @@ export function Profile() {
         </p>
       </section>
 
-      {/* User Info */}
       <div className="bg-white rounded-[24px] p-6 shadow-[0px_4px_24px_-8px_rgba(45,106,79,0.12)] border border-[#2D6A4F]/5">
         <div className="flex flex-col">
           <InfoRow icon={User} label="Nome Completo" value="Gabriel Silva" color="green" />
@@ -57,7 +56,6 @@ export function Profile() {
         </div>
       </div>
 
-      {/* Data Management */}
       <div className="flex flex-col gap-4">
         <h2 className="text-sm font-bold tracking-widest text-[#6B6B6B] uppercase px-1">Gerenciamento de Dados</h2>
         
@@ -99,7 +97,6 @@ export function Profile() {
         </div>
       </div>
 
-      {/* Confirmation Modals */}
       {(activeModal === "export" || activeModal === "delete") && (
         <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm p-0 sm:p-4" onClick={() => setActiveModal(null)}>
           <div 
@@ -154,7 +151,6 @@ export function Profile() {
         </div>
       )}
 
-      {/* Success Toast / Modal */}
       {activeModal === "success" && (
         <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/40 backdrop-blur-sm">
           <div className="bg-white rounded-3xl p-8 flex flex-col items-center gap-4 animate-in zoom-in-95 duration-200">

@@ -16,13 +16,11 @@ const Card = ({ className, children }: { className?: string, children: React.Rea
 export function Home() {
   return (
     <div className="flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      {/* Header section */}
       <section className="flex flex-col gap-2">
         <h1 className="text-4xl font-extrabold text-[#2D6A4F] tracking-tight">Olá, Gabriel!</h1>
         <p className="text-[#6B6B6B] text-lg">Tudo pronto para o seu próximo passo?</p>
       </section>
 
-      {/* Search Bar */}
       <div className="relative group">
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
           <Search className="h-5 w-5 text-[#2D6A4F]/50 group-focus-within:text-[#2D6A4F] transition-colors" />
@@ -34,7 +32,6 @@ export function Home() {
         />
       </div>
 
-      {/* English Course Status */}
       <Card className="relative overflow-hidden flex flex-col gap-6">
         <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 bg-[#2D6A4F]/5 rounded-full blur-2xl pointer-events-none" />
         
@@ -64,7 +61,6 @@ export function Home() {
         </button>
       </Card>
 
-      {/* Urgent Warning - Registro GNIB */}
       <div className="bg-gradient-to-br from-[#C15537] to-[#A33F23] rounded-[24px] p-6 text-white shadow-lg shadow-[#C15537]/20 flex flex-col gap-4">
         <div className="flex items-center gap-2 bg-white/20 w-fit px-3 py-1 rounded-full border border-white/10">
           <TriangleAlert className="w-4 h-4 text-[#FFCFC3]" />
@@ -83,7 +79,6 @@ export function Home() {
         </div>
       </div>
 
-      {/* Plan your next steps */}
       <Card className="bg-[#FAF7F2] border-0 shadow-none relative">
         <div className="flex flex-col gap-4">
           <h3 className="text-xl font-bold text-[#1C1C1E]">Planeje seus próximos passos!</h3>
@@ -97,7 +92,6 @@ export function Home() {
         </div>
       </Card>
 
-      {/* Assistant Tooltip Reminder */}
       <div className="bg-[#F4A261]/10 border border-[#F4A261]/30 rounded-[24px] p-6 relative flex gap-5">
         <div className="w-14 h-14 shrink-0 rounded-2xl bg-[#F4A261] shadow-lg shadow-[#F4A261]/30 flex items-center justify-center text-white">
           <Sparkles className="w-6 h-6" />

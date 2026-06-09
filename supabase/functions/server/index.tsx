@@ -15,7 +15,6 @@ app.use("/*", cors({
 
 const BUCKET_NAME = "make-db2ca519-vault";
 
-// Middleware to get Supabase client
 const getSupabase = () => {
   return createClient(
     Deno.env.get('SUPABASE_URL') || '',
@@ -23,7 +22,6 @@ const getSupabase = () => {
   );
 };
 
-// Initialize bucket
 app.use('*', async (c, next) => {
   const supabase = getSupabase();
   const { data: buckets } = await supabase.storage.listBuckets();
@@ -34,7 +32,6 @@ app.use('*', async (c, next) => {
   await next();
 });
 
-// Checklist State
 app.get('/make-server-db2ca519/checklist', async (c) => {
   try {
     const data = await kv.get('checklist_state');
@@ -54,7 +51,6 @@ app.post('/make-server-db2ca519/checklist', async (c) => {
   }
 });
 
-// Documents Vault
 app.post('/make-server-db2ca519/upload', async (c) => {
   try {
     const formData = await c.req.parseBody();
@@ -74,7 +70,6 @@ app.post('/make-server-db2ca519/upload', async (c) => {
       
     if (error) throw error;
     
-    // Store metadata in KV
     const docsStr = await kv.get('vault_documents') || '[]';
     const docs = JSON.parse(docsStr);
     const newDoc = { id: fileName, name: file.name, type: documentType, uploadedAt: new Date().toISOString() };
@@ -95,11 +90,10 @@ app.get('/make-server-db2ca519/documents', async (c) => {
     
     const supabase = getSupabase();
     
-    // Get signed URLs for all documents
     const docsWithUrls = await Promise.all(docs.map(async (doc: any) => {
       const { data } = await supabase.storage
         .from(BUCKET_NAME)
-        .createSignedUrl(doc.id, 3600); // 1 hour expiry
+        .createSignedUrl(doc.id, 3600);
       return { ...doc, url: data?.signedUrl };
     }));
     

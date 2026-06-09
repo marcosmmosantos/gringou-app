@@ -30,7 +30,6 @@ export function Assistant() {
     setMessages([...messages, { id: Date.now(), role: "user", content: input }]);
     setInput("");
     
-    // Simulate response
     setTimeout(() => {
       setMessages(prev => [...prev, {
         id: Date.now() + 1,
@@ -54,7 +53,6 @@ export function Assistant() {
         </div>
       </section>
 
-      {/* Trust warning */}
       <div className="bg-[#FAF7F2] border border-[#C15537]/20 rounded-xl p-3 flex gap-3 shrink-0 mb-6 shadow-sm">
         <ShieldAlert className="w-5 h-5 text-[#C15537] shrink-0 mt-0.5" />
         <p className="text-xs text-[#6B6B6B] leading-relaxed">
@@ -62,7 +60,6 @@ export function Assistant() {
         </p>
       </div>
 
-      {/* Chat Area */}
       <div className="flex-1 overflow-y-auto flex flex-col gap-6 no-scrollbar pb-6">
         {messages.map((msg) => (
           <div
@@ -99,7 +96,6 @@ export function Assistant() {
         )}
       </div>
 
-      {/* Input Area */}
       <div className="shrink-0 pt-4 mt-auto">
         <form onSubmit={handleSend} className="relative group">
           <input

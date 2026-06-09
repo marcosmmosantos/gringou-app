@@ -78,8 +78,6 @@ export function Layout() {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Removed profile image state management
-
   const navItems = [
     { path: "/", label: "HOME", icon: Home },
     { path: "/dashboard", label: "DASHBOARD", icon: LayoutGrid },
@@ -94,10 +92,6 @@ export function Layout() {
 
   return (
     <div className="min-h-[100dvh] bg-white sm:bg-gray-100 font-sans text-[#1C1C1E] flex justify-center w-full">
-      {/* 
-        Changed to h-[100dvh] max-h-[100dvh] to strictly lock the container to the screen size.
-        This forces the inner <main> to scroll, keeping the bottom navigation permanently fixed at the bottom.
-      */}
       <div className="w-full max-w-md bg-[#FAF7F2] relative h-[100dvh] max-h-[100dvh] border-x border-[#2D6A4F]/10 shadow-2xl flex flex-col overflow-hidden">
         
         {/* Top App Bar */}
@@ -113,7 +107,7 @@ export function Layout() {
           </button>
         </header>
 
-        {/* Content Area - Made strictly scrollable within the fixed parent */}
+        {/* Content Area */}
         <main className="px-6 py-6 pb-32 flex-1 flex flex-col gap-8 overflow-y-auto relative z-10">
           <Outlet context={{} satisfies ProfileContextType} />
         </main>
@@ -121,7 +115,7 @@ export function Layout() {
         {/* FAB */}
         <FABMenu />
 
-        {/* Bottom Nav Bar - Always visible at bottom */}
+        {/* Bottom Nav Bar */}
         <nav className="absolute bottom-0 left-0 w-full bg-[#FAF7F2]/90 backdrop-blur-xl border-t border-[#2D6A4F]/10 rounded-t-3xl px-6 py-4 z-30 pb-6">
           <div className="flex justify-between items-center">
             {navItems.map((item) => {
@@ -147,7 +141,6 @@ export function Layout() {
         <AnimatePresence>
           {isMenuOpen && (
             <>
-              {/* Overlay */}
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -157,7 +150,6 @@ export function Layout() {
                 className="absolute inset-0 bg-black/40 backdrop-blur-sm z-50"
               />
 
-              {/* Drawer */}
               <motion.div 
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
@@ -165,7 +157,6 @@ export function Layout() {
                 transition={{ type: "spring", damping: 25, stiffness: 200 }}
                 className="absolute top-0 right-0 bottom-0 w-[80%] bg-white z-50 flex flex-col shadow-2xl rounded-l-[32px] overflow-hidden"
               >
-                {/* Header */}
                 <div className="px-6 py-6 border-b border-black/5 flex items-center justify-between bg-[#FAF7F2]">
                   <span className="font-extrabold text-[#2D6A4F] text-xl">Menu</span>
                   <button 
@@ -176,10 +167,7 @@ export function Layout() {
                   </button>
                 </div>
 
-                {/* Content */}
                 <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col gap-6">
-                  
-                  {/* User Snippet */}
                   <div className="flex items-center gap-4 pb-6 border-b border-black/5">
                     <div className="w-12 h-12 rounded-full bg-[#2D6A4F]/5 border-2 border-[#2D6A4F]/10 shadow-sm flex items-center justify-center shrink-0 p-2">
                       <img src={logoIcon} alt="Gringou" className="w-full h-full object-contain" />
@@ -190,7 +178,6 @@ export function Layout() {
                     </div>
                   </div>
 
-                  {/* Menu Links */}
                   <div className="flex flex-col gap-2">
                     <Link 
                       to="/profile" 
@@ -232,7 +219,6 @@ export function Layout() {
                   </div>
                 </div>
 
-                {/* Footer / Logout */}
                 <div className="p-6 border-t border-black/5 bg-[#FAF7F2]">
                   <button 
                     onClick={handleLogout}
@@ -242,12 +228,10 @@ export function Layout() {
                     <span>Sair da conta</span>
                   </button>
                 </div>
-
               </motion.div>
             </>
           )}
         </AnimatePresence>
-
       </div>
     </div>
   );
